@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    ErrorDocument 404 http://black-cinema-php.test/404
+
+    RewriteRule ^dashboard$ home.php [L]
+    RewriteRule ^home$ home.php?module=pages/views/home [L]
+    RewriteRule ^movie_details$ home.php?module=pages/views/movie_details [QSA,L]
+    RewriteRule ^movie_order$ home.php?module=pages/views/movie_order [QSA,L]
+    RewriteRule ^movie_checkout$ home.php?module=pages/views/movie_checkout [QSA,L]
+    RewriteRule ^movie_cart$ home.php?module=pages/views/movie_cart [QSA,L]
+    RewriteRule ^daftar_pencarian$ home.php?module=pages/views/daftar_pencarian [QSA,L]
+
+    RewriteRule ^logout$ logout.php [L]
+</IfModule>

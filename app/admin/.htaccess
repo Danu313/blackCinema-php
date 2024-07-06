@@ -1,0 +1,21 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    ErrorDocument 404 http://black-cinema-php.test/app/admin/home.php?module=pages/error/404.php
+
+    RewriteRule ^dashboard$ home.php [L]
+    RewriteRule ^home$ home.php?module=pages/views/dashboard [L]
+    RewriteRule ^movies$ home.php?module=pages/views/movies [L]
+    RewriteRule ^users$ home.php?module=pages/views/users [L]
+    RewriteRule ^payment_list$ home.php?module=pages/views/payment_list [L]
+    RewriteRule ^payment_card$ home.php?module=pages/views/payment_card [L]
+    RewriteRule ^payment_plan$ home.php?module=pages/views/payment_plan [L]
+    RewriteRule ^payment_promo_code$ home.php?module=pages/views/payment_promo_code [L]
+    RewriteRule ^edit_movie$ home.php?module=pages/views/edit_movie [QSA,L]
+    RewriteRule ^edit_payment_list$ home.php?module=pages/views/edit_payment_list [QSA,L]
+    RewriteRule ^edit_payment_plan$ home.php?module=pages/views/edit_payment_plan [QSA,L]
+    RewriteRule ^edit_payment_card$ home.php?module=pages/views/edit_payment_card [QSA,L]
+    RewriteRule ^edit_payment_promo_code$ home.php?module=pages/views/edit_payment_promo_code [QSA,L]
+    RewriteRule ^edit_user$ home.php?module=pages/views/edit_user [QSA,L]
+    RewriteRule ^advertisement$ home.php?module=pages/views/advertisement [QSA,L]
+    RewriteRule ^logout$ logout.php [L]
+</IfModule>

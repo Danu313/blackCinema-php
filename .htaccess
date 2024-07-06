@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+RewriteRule ^signin$ signin.php [L]
+RewriteRule ^home$ home.php [L]
+RewriteRule ^signup$ signup.php [L]
+RewriteRule ^user$ app/user [L]
+RewriteRule ^admin$ app/admin [L]
+
+</IfModule>

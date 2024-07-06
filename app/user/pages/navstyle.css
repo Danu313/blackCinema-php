@@ -1,0 +1,104 @@
+.dark {
+    --bg-color: #1a202c;
+}
+
+.dark .nav-icon {
+    color: #080807
+}
+
+.dark #info-icon {
+    background-color: white;
+}
+
+.dark #bookmark-icon {
+    background-color: white;
+}
+
+.dark #bell-icon {
+    background-color: white;
+}
+
+.dark #cart-icon {
+    background-color: white;
+}
+
+/* Light Mode Styles */
+.light {
+    --bg-color: #ffffff;
+    --text-color: #1a202c;
+}
+
+.light .nav-icon {
+    color: #fcfcfa;
+}
+
+.light #info-icon {
+    background-color: black;
+}
+
+.light #bookmark-icon {
+    background-color: black;
+}
+
+.light #bell-icon {
+    background-color: black;
+}
+
+.light #cart-icon {
+    background-color: black;
+}
+
+/* Common styles */
+.nav-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    margin-right: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+/* Dropdown styles */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    margin-top: 0.5rem;
+    min-width: 12rem;
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu.show {
+    display: block;
+    animation: slide-down 0.3s ease;
+}
+
+.dropdown-menu-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu-item:hover {
+    background-color: #f1f1f1;
+}
+
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
