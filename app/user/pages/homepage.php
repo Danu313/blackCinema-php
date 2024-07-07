@@ -1,7 +1,7 @@
 <?php
 ob_start(); // Mulai output buffering
 
-include("conn.php");
+include "../../config/conn.php";
 
 $query = '';
 
@@ -70,32 +70,38 @@ ob_end_flush(); // Akhiri dan kirim output ke browser
     <div class="w-full h-auto p-10 lg:p-20">
         <div class="flex flex-row w-full gap-5">
             <?php
-            // Fetch advertisements from backend
-            $advertisements = json_decode(file_get_contents('http://localhost/black-cinema-php/app/admin/pages/controller/advertisement/advertisement_controller.php?action=getAll'), true);
 
-            // Loop through advertisements and display them
-            foreach ($advertisements as $advertisement) {
-                echo '<a href="#" class="group w-1/2 relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">';
-                echo '<img src="' . $advertisement['imagePath'] . '" loading="lazy" alt="" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />';
-                echo '<div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>';
-                echo '<span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">Iklan</span>';
-                echo '</a>';
+            include "C:\laragon\www\black-cinema-php\app\admin\pages\controller\advertisement\advertisement_controller.php";
+            $advertisements = getAllAdvertisements();
+
+            // Check if advertisements are available and loop through them
+            if (is_array($advertisements) && !empty($advertisements)) {
+                foreach ($advertisements as $advertisement) {
+                    echo '<a href="#" class="group w-1/2 relative flex h-64 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">';
+                    echo '<img src="' . $advertisement['links'] . '" loading="lazy" alt="" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />';
+                    echo '<div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>';
+                    echo '<span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">Iklan</span>';
+                    echo '</a>';
+                }
+            } else {
+                // Handle case where no advertisements are found
+                echo '<p class="text-gray-500">Iklan tidak ditemukan.</p>';
             }
             ?>
         </div>
     </div>
 
 
+
     <div class='overflow-x-hidden overflow-y-hidden scrollbar-none relative flex flex-nowrap items-center'>
         <?php
-        include("conn.php");
         $sql = mysqli_query($conn, "SELECT * FROM movie");
         $hasil = mysqli_fetch_all($sql, MYSQLI_ASSOC);
         foreach ($hasil as $data) {
         ?>
             <div class="flex items-end h-full mr-3">
                 <span class="overflow-hidden text-end flex items-end h-full leading-none text-[180px] tracking-[-15px] font-bold text-[#222c38]">
-                    1
+                     
                 </span>
                 <div class='w-[190px] overflow-hidden' style="margin-inline-end: 12px;">
                     <div class="relative flex overflow-hidden">
@@ -120,7 +126,6 @@ ob_end_flush(); // Akhiri dan kirim output ke browser
     <div class="swiper-container mt-0 mb-8 relative">
         <div class="swiper-wrapper">
             <?php
-            include "../../config/conn.php";
             $sql = mysqli_query($conn, "SELECT * FROM movie LIMIT 6");
             $hasil = mysqli_fetch_all($sql, MYSQLI_ASSOC);
             foreach ($hasil as $data) {

@@ -52,7 +52,7 @@ $queryCancelled = "
     LEFT JOIN 
         movie m ON p.movieId = m.id
     WHERE 
-        p.status = 'cancelled' 
+        p.status = 'canceled' 
         AND p.userId = '$userId'";
 
 $resultPending = mysqli_query($conn, $queryPending);
@@ -95,7 +95,7 @@ if (!empty($promoCode)) {
 <div class="w-screen min-h-screen">
     <div class="w-full bg-cover bg-black/50">
         <div class="flex flex-col w-full justify-center items-center pt-[100px]">
-            <h2 class="title font-manrope font-bold text-4xl leading-10 mb-8 text-center text-white">Keranjang</h2>
+            <h2 class="title font-manrope font-bold text-2xl leading-10 mb-8 text-center text-white">Keranjang</h2>
             <?php if (mysqli_num_rows($resultPending) > 0) { ?>
                 <div>
                     <div class="grid md:grid-cols-2 gap-4">
@@ -168,51 +168,47 @@ if (!empty($promoCode)) {
                 </div>
             <?php } ?>
 
-            <h2 class="title font-manrope font-bold text-4xl leading-10 mb-8 mt-12 text-center text-white">Pembayaran Sukses</h2>
+            <h2 class="title font-manrope font-bold text-2xl leading-10 mb-8 mt-12 text-center text-white">Pembayaran Sukses</h2>
             <?php if (mysqli_num_rows($resultSuccess) > 0) { ?>
-                <div>
-                    <?php foreach ($resultSuccess as $rowPayment) { ?>
-                        <div class="w-screen">
-                            <table class="w-full max-w-screen-xl mx-auto ">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gambar</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Judul</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Harga</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Waktu Tayang</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Metode Pembayaran</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ruang</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white w-screen divide-y divide-gray-200">
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex-shrink-0 h-12 w-12">
-                                                <img class="h-12 w-12 rounded" src="<?= $rowPayment['poster_path'] ?>" alt="<?= $rowPayment['title'] ?>">
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900"><?= $rowPayment['title'] ?></div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Rp <?= number_format($rowPayment['totalPrice'], 2, ',', '.') ?></div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900"><?= $rowPayment['startTime'] ?></div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900"><?= $rowPayment['methodPayment'] ?></div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900"><?= $rowPayment['room'] ?></div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    <?php } ?>
-
-
+                <div class="w-screen">
+                    <table class="w-full max-w-screen-xl mx-auto ">
+                        <thead class="bg-gray-950">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"></th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Judul</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Total Harga</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Waktu Tayang</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Metode Pembayaran</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Ruang</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-gray-900 divide-y divide-gray-900">
+                            <?php foreach ($resultSuccess as $rowPayment) { ?>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex-shrink-0 h-12 w-12">
+                                            <img class="h-12 w-12 rounded" src="<?= $rowPayment['poster_path'] ?>" alt="<?= $rowPayment['title'] ?>">
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-200"><?= $rowPayment['title'] ?></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-200">Rp <?= number_format($rowPayment['totalPrice'], 2, ',', '.') ?></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-200"><?= $rowPayment['startTime'] ?></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-200"><?= $rowPayment['methodPayment'] ?></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-200"><?= $rowPayment['room'] ?></div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             <?php } else { ?>
                 <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
@@ -221,55 +217,55 @@ if (!empty($promoCode)) {
             <?php } ?>
 
             <!-- Tampilkan Pembayaran Dibatalkan -->
-            <h2 class="title font-manrope font-bold text-4xl leading-10 mb-8 mt-12 text-center text-white">Pembayaran Dibatalkan</h2>
-            <?php if (mysqli_num_rows($resultCancelled) >= 0) { ?>
-                <div>
-                    <?php foreach ($resultCancelled as $rowPayment) { ?>
-                        <div class="w-screen">
-                            <table class="w-full max-w-screen-xl mx-auto ">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gambar</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Judul</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Harga</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Waktu Tayang</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Metode Pembayaran</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ruang</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white w-screen divide-y divide-gray-200">
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex-shrink-0 h-12 w-12">
-                                                <img class="h-12 w-12 rounded" src="<?= $rowPayment['poster_path'] ?>" alt="<?= $rowPayment['title'] ?>">
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900"><?= $rowPayment['title'] ?></div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Rp <?= number_format($rowPayment['totalPrice'], 2, ',', '.') ?></div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900"><?= $rowPayment['startTime'] ?></div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900"><?= $rowPayment['methodPayment'] ?></div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900"><?= $rowPayment['room'] ?></div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    <?php } ?>
+            <h2 class="title font-manrope font-bold text-2xl leading-10 mb-8 mt-12 text-center text-white">Pembayaran Dibatalkan</h2>
+
+            <?php if (mysqli_num_rows($resultCancelled) > 0) { ?>
+                <div class="w-full max-w-screen-xl mx-auto">
+                    <table class="w-full divide-y divide-gray-900">
+                        <thead class="bg-gray-950">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"></th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Judul</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Total Harga</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Waktu Tayang</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Metode Pembayaran</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Ruang</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-gray-900 divide-y divide-gray-900">
+                            <?php foreach ($resultCancelled as $rowPayment) { ?>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex-shrink-0 h-12 w-12">
+                                            <img class="h-12 w-12 rounded" src="<?= $rowPayment['poster_path'] ?>" alt="<?= $rowPayment['title'] ?>">
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-200"><?= $rowPayment['title'] ?></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-200">Rp <?= number_format($rowPayment['totalPrice'], 2, ',', '.') ?></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-200"><?= $rowPayment['startTime'] ?></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-200"><?= $rowPayment['methodPayment'] ?></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-200"><?= $rowPayment['room'] ?></div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             <?php } else { ?>
                 <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
                     <p class="font-manrope font-semibold text-xl leading-9 text-center">Belum ada pembayaran dibatalkan</p>
                 </div>
             <?php } ?>
+
         </div>
     </div>
 </div>

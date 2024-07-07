@@ -40,7 +40,7 @@
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap"><?= $row['id']; ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <img src="<?= $row['imagePath']; ?>" alt="Advertisement Image" class="h-10 w-10 object-cover rounded-full">
+                                        <img src="<?= $row['links']; ?>" alt="Advertisement Image" class="h-10 w-10 object-cover rounded-full">
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded editBtn" data-id="<?= $row['id']; ?>">Edit</button>
